@@ -23,7 +23,6 @@ media/
 
 # .env files (for environment variables)
 .env
-.env.*
 
 # IDEs and editors
 .vscode/
