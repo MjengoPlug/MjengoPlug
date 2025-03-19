@@ -1,0 +1,42 @@
+{% load i18n %}
+
+{% block subject %}
+{% blocktrans %}Account activation on {{ site_name }}{% endblocktrans %}
+{% endblock subject %}
+
+{% block text_body %}
+{% blocktrans %}Hi {{ user.username }},{% endblocktrans %}
+
+{% blocktrans %}Thank you for registering on {{ site_name }}! To complete your email verification, you have two options:{% endblocktrans %}
+
+{% blocktrans %}Option 1: Verify using the OTP{% endblocktrans %}
+{% trans "Your One-Time Password (OTP) is: " %}{{ otp_code }}
+{% trans "This OTP will expire in 5 minutes. Enter this OTP in the verification form to verify your email." %}
+
+{% blocktrans %}Option 2: Verify using the Email Link{% endblocktrans %}
+{% trans "Click the link below to activate your account:" %}
+{{ activation_url }}
+
+{% trans "If you did not register with us, please ignore this email." %}
+
+{% trans "Best regards," %}<br>{{ site_name }} Team
+{% endblock text_body %}
+
+{% block html_body %}
+<p>{% blocktrans %}Hi {{ user.username }},{% endblocktrans %}</p>
+
+<p>{% blocktrans %}Thank you for registering on {{ site_name }}! To complete your email verification, you have two options:{% endblocktrans %}</p>
+
+<h3>{% blocktrans %}Option 1: Verify using the OTP{% endblocktrans %}</h3>
+<p>{% trans "Your One-Time Password (OTP) is: " %}<strong>{{ otp_code }}</strong></p>
+<p>{% trans "This OTP will expire in 5 minutes. Enter this OTP in the verification form to verify your email." %}</p>
+
+<h3>{% blocktrans %}Option 2: Verify using the Email Link{% endblocktrans %}</h3>
+<p>{% trans "Click the link below to activate your account:" %}</p>
+<p><a href="{{ activation_url }}">{{ activation_url }}</a></p>
+
+<p>{% trans "If you did not register with us, please ignore this email." %}</p>
+
+<p>{% trans "Best regards," %}<br>{{ site_name }} Team</p>
+{% endblock html_body %}
+

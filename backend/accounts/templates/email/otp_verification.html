@@ -1,0 +1,37 @@
+{% load i18n %}
+
+{% block subject %}
+{% blocktrans %}Email Verification on {{ site_name }}{% endblocktrans %}
+{% endblock subject %}
+
+{% block text_body %}
+{% blocktrans %}Hello {{ user.username }},{% endblocktrans %}
+
+{% blocktrans %}Thank you for registering with {{ site_name }}!{% endblocktrans %}
+
+{% blocktrans %}Here is your OTP for email verification:{% endblocktrans %}
+{{ otp_code }}
+
+{% blocktrans %}This OTP will expire in 5 minutes.{% endblocktrans %}
+
+{% blocktrans %}Please use the following link to verify your email:{% endblocktrans %}
+{{ verification_url }}
+
+{% blocktrans %}Best regards,{% endblocktrans %}
+{{ site_name }} Team
+{% endblock text_body %}
+
+{% block html_body %}
+<p>{% blocktrans %}Hello {{ user.username }},{% endblocktrans %}</p>
+
+<p>{% blocktrans %}Thank you for registering with {{ site_name }}!{% endblocktrans %}</p>
+
+<p>{% blocktrans %}Here is your OTP for email verification:{% endblocktrans %} <strong>{{ otp_code }}</strong></p>
+
+<p>{% blocktrans %}This OTP will expire in 5 minutes.{% endblocktrans %}</p>
+
+<p>{% blocktrans %}Please use the following link to verify your email:{% endblocktrans %}</p>
+<p><a href="{{ verification_url }}">Verify your email</a></p>
+
+<p>{% blocktrans %}Best regards,{% endblocktrans %}<br>{{ site_name }} Team</p>
+{% endblock html_body %}
