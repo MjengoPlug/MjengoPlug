@@ -112,7 +112,7 @@ class OtpResendView(APIView):
 
             # Send OTP to email
             subject = "Your OTP for Email Verification"
-            message = f"Hi {user.username},\n\nYour OTP is {otp_code}. It will expire in 5 minutes.\n\nBest,\nTeam"
+            message = f"Hi {user.user_name},\n\nYour OTP is {otp_code}. It will expire in 5 minutes.\n\nBest,\nTeam"
             send_mail(subject, message, 'learnerviner@gmail.com', [user.email])
 
             return Response({"detail": "A new OTP has been sent to your email.", "otp_token": otp_token.token}, status=status.HTTP_200_OK)
