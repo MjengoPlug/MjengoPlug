@@ -170,6 +170,10 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
+
+REDIRECT_URLS = os.environ.get('REDIRECT_URLS', '')  # Default to an empty string
+SOCIAL_AUTH_ALLOWED_REDIRECT_URIS = REDIRECT_URLS.split(',') if REDIRECT_URLS else []
+
 DJOSER = {
     'ACTIVATION_EMAIL': 'accounts.views.ActivationEmail',
     'PASSWORD_RESET_CONFIRM_URL': 'password-reset/{uid}/{token}',
@@ -178,7 +182,8 @@ DJOSER = {
     'USER_CREATE_PASSWORD_RETYPE': True,
     'PASSWORD_RESET_CONFIRM_RETYPE': True,
     'TOKEN_MODEL': None,
-    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': os.environ.get('REDIRECT_URLS').split(',')
+    # 'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': os.environ.get('REDIRECT_URLS').split(',')
+    "SOCIAL_AUTH_ALLOWED_REDIRECT_URIS": SOCIAL_AUTH_ALLOWED_REDIRECT_URIS,
 }
 EMAIL_FRONTEND_PROTOCOL = "http"
 EMAIL_FRONTEND_DOMAIN = os.environ.get('FRONTEND_URL')
@@ -246,3 +251,7 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
