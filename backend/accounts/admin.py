@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserAccount
+from .models import UserAccount, OtpToken,Business
 from django.contrib.auth.admin import UserAdmin
 
 # Register your models here.
@@ -21,3 +21,4 @@ class UserAdminConfig(UserAdmin):
     )
 
 admin.site.register(UserAccount, UserAdminConfig)
+admin.site.register(Business)

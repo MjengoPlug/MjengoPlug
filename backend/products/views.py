@@ -27,7 +27,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = Category.objects.all()
-        category = self.request.query_params.get('category')
-        if category is not None:
-            queryset = queryset.filter(category=category)
+        category_name = self.request.query_params.get('name')
+        if category_name is not None:
+            queryset = queryset.filter(category=category_name)
         return queryset

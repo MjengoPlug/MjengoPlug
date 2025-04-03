@@ -50,6 +50,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
+from django.conf import settings
 
 # Custom User Manager
 class UserAccountManager(BaseUserManager):
@@ -129,3 +130,14 @@ class OtpToken(models.Model):
             self.token = secrets.token_urlsafe()
         
         super().save(*args, **kwargs)  # Save the OTP instance
+
+
+class Business(models.Model):
+    owner=models.ForeignKey(UserAccount, on_delete=models.CASCADE)
+    name=models.CharField(max_length=150)
+    description=models.TextField()
+    location=models.CharField(max_length=150)
+    phone_number=models.CharField(max_length=150, blank=True,unique=True)
+
+    def __str__(self):
+        return self.name
